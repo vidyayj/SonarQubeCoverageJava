@@ -1,0 +1,16 @@
+name: code build and review
+on: push
+jobs:
+  buildjob:
+    runs-on: ubuntu-latest
+    steps:
+      - name: clone repository
+        uses: actions/checkout@v4
+      - name: setup java 17 and maven
+        uses: actions/setup-java@v4
+        with:
+            distribution: 'temurin'
+            java-version: '21'
+            cache: 'maven'
+      - name: Build the code
+        run: mvn package
